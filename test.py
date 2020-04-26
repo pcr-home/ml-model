@@ -8,6 +8,7 @@ from keras.layers import Activation
 from keras.layers.embeddings import Embedding
 from keras.preprocessing import sequence
 from keras.models import model_from_json
+from keras.models import load_model
 
 np.random.seed(7)
 X_train = []
@@ -106,7 +107,12 @@ scores = model.evaluate(X_train, y_train, verbose=0)
 print("Accuracy: %.2f%%" % (scores[1]*100))
 #model = model.save('binary_model.h5') 
 
-model_json = model.to_json()
+model.save('my_model.h5')
+del model
+model = load_model('my_model.h5')
+
+
+""" model_json = model.to_json()
 with open("model.json", "w") as json_file:
     json_file.write(model_json)
 # serialize weights to HDF5
@@ -120,14 +126,7 @@ json_file.close()
 loaded_model = model_from_json(loaded_model_json)
 # load weights into new model
 loaded_model.load_weights("model.h5")
-print("Loaded model from disk")
+print("Loaded model from disk") """
  
-"""  evaluate loaded model on test data
-loaded_model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-score = loaded_model.evaluate(X, Y, verbose=0)
-print("%s: %.2f%%" % (loaded_model.metrics_names[1], score[1]*100))
- """
 
 #add accuracy and loss plots
-#add dense layers, increase number of epochs
-#look into batch normalization
