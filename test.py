@@ -98,11 +98,11 @@ model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accur
 
 print(model.summary())
 
-model.fit(X_train, y_train, epochs=28, batch_size= 64)
+model.fit(X_train, y_train, epochs=10, batch_size= 64)
 scores = model.evaluate(X_train, y_train, verbose=0)
 
 print("Accuracy: %.2f%%" % (scores[1]*100))
-model = model.save_weights('binary_model.h5') 
+model = model.save('binary_model.h5') 
 
 
 #add accuracy and loss plots
