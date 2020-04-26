@@ -7,6 +7,10 @@ from keras.layers import LSTM
 from keras.layers import Activation
 from keras.layers.embeddings import Embedding
 from keras.preprocessing import sequence
+import matplotlib.pyplot as plt 
+from sklearn import metrics
+
+
 np.random.seed(7)
 X_train = []
 Y_train = []
@@ -98,11 +102,14 @@ model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accur
 
 print(model.summary())
 
-model.fit(X_train, y_train, epochs=28, batch_size= 64)
+model.fit(X_train, y_train, epochs=30, batch_size= 64)
+#metrics.classification_report(X_train, y_train) hard to do this rn since the data is label-encoded
+
 scores = model.evaluate(X_train, y_train, verbose=0)
 
-print("Accuracy: %.2f%%" % (scores[1]*100))
+print("Accuracy: %.2f%%" % (scores[0]*100))
+model = model.save_weights('binary_model.h5') 
 
-#add accuracy and loss plots
-#add dense layers, increase number of epochs
-#look into batch normalization
+#add accuracy and loss plots!!
+#increase amount of other viral RNA sequences text files
+#import OTHER metrics from sklearn!!
