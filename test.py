@@ -24,7 +24,7 @@ def process_file(filename):
   
   # Sets y_i to 1 if it starts with MN and 0 otherwise. 
   y_i = 0
-  if filename[:2] == 'MN':  
+  if filename[:2] == 'MT':  
     y_i = 1
 
   file = open(filename,encoding="latin-1") # opens the file
@@ -102,13 +102,12 @@ model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accur
 
 print(model.summary())
 
-model.fit(X_train, y_train, epochs=30, batch_size= 64)
+model.fit(X_train, y_train, epochs=10, batch_size= 64)
 #metrics.classification_report(X_train, y_train) hard to do this rn since the data is label-encoded
 
 scores = model.evaluate(X_train, y_train, verbose=0)
 
 print("Accuracy: %.2f%%" % (scores[0]*100))
-model = model.save_weights('binary_model.h5') 
 
 #add accuracy and loss plots!!
 #increase amount of other viral RNA sequences text files
