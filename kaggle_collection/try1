@@ -1,0 +1,13 @@
+import numpy
+import glob3
+from keras.models import Sequential
+from keras.layers import Dense
+from keras.layers import LSTM
+from keras.layers.embeddings import Embedding
+from keras.preprocessing import sequence
+numpy.random.seed(7)
+X_train = []
+Y_train = []
+filenames_txt = glob.glob(*.txt) 
+
+
